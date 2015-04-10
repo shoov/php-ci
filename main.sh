@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+BUILD_ID=$1
+ACCESS_TOKEN=$2
+
+BUILD_INFO=$(node ~/build_info.js $BUILD_ID $ACCESS_TOKEN)
+
+# Get the values from the JSON and trim the qoute (") signs.
+OWNER=$(echo $BUILD_INFO | jq '.owner' | cut -d '"' -f 2)
+REPO=$(echo $BUILD_INFO | jq '.repo' | cut -d '"' -f 2)
+BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
+
+# Setup hub
+node ~/get_hub.js $ACCESS_TOKEN
+
+# Clone repo
+cd ~/build
+git config --global hub.protocol https
+hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
+
+# Parse .shuv.yml file
+node ~/parse.js
+
+# Show commands from now on
+set -x
+
+# Execute the parsed .shuv.yml file
+sh -c ~/shoov.sh
