@@ -18,6 +18,10 @@ cd ~/build
 git config --global hub.protocol https
 hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 
+# Export variables.
+~/export-vars.js
+source ~/export.sh
+
 # Parse .shuv.yml file
 node ~/parse.js
 

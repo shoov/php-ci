@@ -1,5 +1,5 @@
 # PHP-CI
-  
+
 > Behat tests on the live site
 
 ## Install
@@ -8,7 +8,7 @@
 
 ## Usage
 
-docker run -it amitaibu/php-ci /home/behat/main.sh <build-id> <access-token>
+docker run -e "BACKEND_URL=https://example/com" -it amitaibu/php-ci /home/behat/main.sh <build-id> <access-token>
 
 
 ## Build
