@@ -1,26 +1,27 @@
 FROM ubuntu:14.04
 MAINTAINER Gizra
 
+ENV PHANTOMJS_VERSION 1.9.8
+
 # Update and install packages
 RUN apt-get update
 RUN apt-get install -y curl zsh git vim
 RUN apt-get install -y -q php5-cli php5-curl
-RUN apt-get install -y wget
+RUN apt-get install -y wget libfreetype6 libfontconfig bzip2
 
 RUN curl -sL https://deb.nodesource.com/setup  | sudo bash -
 RUN apt-get install -y nodejs
 
 # Install phantomJS and casperJS
-RUN npm install -g casperjs
 RUN \
-  cd /usr/local/share && \
-  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2 && \
-  ls -al && \
-  tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2 && \
-  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs && \
-  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
-  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
-  phantomjs -v
+  mkdir -p /srv/var && \
+  wget -q --no-check-certificate -O /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
+  tar -xjf /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C /tmp && \
+  rm -f /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
+  mv /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/ /srv/var/phantomjs && \
+  ln -s /srv/var/phantomjs/bin/phantomjs /usr/bin/phantomjs
+
+RUN npm install -g casperjs
 
 # Install jq
 RUN cd /usr/local/bin && curl -O http://stedolan.github.io/jq/download/linux64/jq && chmod +x jq
