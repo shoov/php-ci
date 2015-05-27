@@ -8,7 +8,7 @@
 
 ## Usage
 
-docker run -e "BACKEND_URL=https://example/com" -it amitaibu/php-ci /home/behat/main.sh <build-id> <access-token>
+docker run -e "BACKEND_URL=https://example/com" -it amitaibu/php-ci /home/shoov/main.sh <build-id> <access-token>
 
 
 ## Build
