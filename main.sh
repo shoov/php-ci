@@ -9,6 +9,7 @@ BUILD_INFO=$(node ~/build_info.js $BUILD_ID $ACCESS_TOKEN)
 OWNER=$(echo $BUILD_INFO | jq '.owner' | cut -d '"' -f 2)
 REPO=$(echo $BUILD_INFO | jq '.repo' | cut -d '"' -f 2)
 BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
+PRIVATE_KEY=$(echo $BUILD_INFO | jq '.private_key' | cut -d '"' -f 2)
 
 # Setup hub
 node ~/get_hub.js $ACCESS_TOKEN

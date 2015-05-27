@@ -3,11 +3,10 @@
 var Promise = require("bluebird");
 var yaml = require('js-yaml');
 var fs = Promise.promisifyAll(require("fs"));
-var exec = require('child_process').exec;
 
-var crypto = require('crypto'),
-    algorithm = 'aes-256-ctr',
-    password = 'd6F3Efeq';
+var crypto = require('crypto');
+var algorithm = 'aes-256-ctr';
+var password = 'd6F3Efeq';
 
 function encrypt(text){
   var cipher = crypto.createCipher(algorithm,password)
