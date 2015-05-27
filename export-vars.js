@@ -6,7 +6,14 @@ var fs = Promise.promisifyAll(require("fs"));
 
 var crypto = require('crypto');
 var algorithm = 'aes-256-ctr';
-var password = 'd6F3Efeq';
+
+
+var arguments = process.argv.slice(2);
+if (!arguments[0]) {
+  throw new Error('Private key not passed.');
+}
+
+var password = arguments[0];
 
 function encrypt(text){
   var cipher = crypto.createCipher(algorithm,password)
