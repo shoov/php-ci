@@ -5,9 +5,22 @@ MAINTAINER Gizra
 RUN apt-get update
 RUN apt-get install -y curl zsh git vim
 RUN apt-get install -y -q php5-cli php5-curl
+RUN apt-get install -y wget
 
 RUN curl -sL https://deb.nodesource.com/setup  | sudo bash -
 RUN apt-get install -y nodejs
+
+# Install phantomJS and casperJS
+RUN npm install -g casperjs
+RUN \
+  cd /usr/local/share && \
+  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2 && \
+  ls -al && \
+  tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2 && \
+  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs && \
+  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
+  ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
+  phantomjs -v
 
 # Install jq
 RUN cd /usr/local/bin && curl -O http://stedolan.github.io/jq/download/linux64/jq && chmod +x jq
