@@ -20,7 +20,6 @@ hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 
 # Export variables.
 ~/export-vars.js
-cat ~/build/export.sh
 source ~/build/export.sh
 
 # Parse .shuv.yml file
