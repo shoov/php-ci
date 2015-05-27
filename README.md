@@ -8,7 +8,9 @@
 
 ## Usage
 
-docker run -e "BACKEND_URL=https://example/com" -it amitaibu/php-ci /home/shoov/main.sh <build-id> <access-token>
+When working locally the backend URL should be your IP, as docker doesn't know what "localhost" is.
+
+docker run -e "BACKEND_URL=http://10.0.0.1" -it amitaibu/php-ci /home/shoov/main.sh <build-id> <access-token>
 
 
 ## Build
