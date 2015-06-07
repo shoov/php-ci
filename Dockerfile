@@ -62,6 +62,7 @@ ADD build_info.js /home/shoov/build_info.js
 ADD get_hub.js /home/shoov/get_hub.js
 ADD main.sh /home/shoov/main.sh
 ADD parse.js /home/shoov/parse.js
+ADD export-vars.js /home/shoov/export-vars.js
 
 USER shoov
 WORKDIR /home/shoov

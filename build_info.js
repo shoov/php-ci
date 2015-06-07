@@ -27,7 +27,7 @@ var getBuild = function(buildId) {
     url: backendUrl + '/api/ci-builds/' + buildId,
     qs: {
       access_token: accessToken,
-      fields: 'id,git_branch,repository'
+      fields: 'id,git_branch,repository,private_key'
     }
   };
 
@@ -65,6 +65,7 @@ getBuild(arguments[0])
     var repoId = data.repository;
 
     output.branch = data.git_branch;
+    output.private_key = data.private_key;
 
     return getRepository(repoId);
   })
