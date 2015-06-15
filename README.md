@@ -17,7 +17,10 @@ When working locally the backend URL should be your IP, as docker doesn't know w
     
 To work with silenium support first run the silenium server.
 
-    $ docker run --name=silenium elgalu/selenium:v2.45.0-oracle1
+    $ docker run --name=silenium \
+      -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 \
+      -e VNC_PASSWORD=hola -e WITH_GUACAMOLE=false \
+      elgalu/selenium:v2.45.0-oracle1
     
 For other configuration options check [full documentation to silenium container](https://registry.hub.docker.com/u/elgalu/docker-selenium/) 
     
