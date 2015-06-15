@@ -20,6 +20,7 @@ git config --global hub.protocol https
 hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 
 # Export variables.
+touch ~/build/export.sh
 ~/export-vars.js $PRIVATE_KEY
 source ~/build/export.sh
 
