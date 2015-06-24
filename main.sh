@@ -23,11 +23,11 @@ hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 ~/export-vars.js $PRIVATE_KEY
 source ~/build/export.sh
 
-# Parse .shuv.yml file
+# Parse .shoov.yml file
 node ~/parse.js
 
 # Show commands from now on
 set -x
 
-# Execute the parsed .shuv.yml file
+# Execute the parsed .shoov.yml file
 sh -c ~/shoov.sh
