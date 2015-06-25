@@ -1,8 +1,10 @@
 {
+  "name": "shoov_php_ci",
+  "private": true,
   "dependencies": {
-    "bluebird": "^2.9.14",
-    "js-yaml": "^3.2.7",
-    "ramda": "^0.11.0",
-    "request-promise": "^0.4.0"
+    "bluebird": "2.9.14",
+    "js-yaml": "3.2.7",
+    "ramda": "0.11.0",
+    "request-promise": "0.4.0"
   }
 }

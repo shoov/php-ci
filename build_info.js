@@ -48,8 +48,7 @@ var getRepository = function(repoId) {
     url: backendUrl + '/api/repositories/' + repoId,
     qs: {
       access_token: accessToken,
-      fields: 'id,label',
-      ssh_key: true
+      fields: 'id,label'
     }
   };
 

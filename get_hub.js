@@ -15,7 +15,7 @@ var accessToken = arguments[0];
 
 var githubUsername;
 var githubAccessToken;
-var homeDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+var homeDir = '/usr/local/shoov';
 
 /**
  * Get User data.

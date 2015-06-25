@@ -5,7 +5,7 @@ var R = require('ramda');
 
 var prepareShFile = function(json) {
   var contents = [
-    'cd ~/build',
+    'cd /usr/local/shoov/build',
     'set -x'
   ];
 
@@ -15,15 +15,15 @@ var prepareShFile = function(json) {
   return contents.join('\n');
 };
 
-fs.readFileAsync('/home/shoov/build/.shoov.yml')
+fs.readFileAsync('/usr/local/shoov/build/.shoov.yml')
   .then(function (data) {
     return yaml.safeLoad(data);
   })
   .then(function (json) {
-    return fs.writeFileAsync('/home/shoov/shoov.sh', prepareShFile(json));
+    return fs.writeFileAsync('/usr/local/shoov/shoov.sh', prepareShFile(json));
   })
   .then(function() {
-    return fs.chmodAsync('/home/shoov/shoov.sh', '777')
+    return fs.chmodAsync('/usr/local/shoov/shoov.sh', '777')
   })
   .catch(SyntaxError, function (e) {
     console.error("file contains invalid json");

@@ -29,7 +29,7 @@ function decrypt(text){
   return dec;
 }
 
-fs.readFileAsync('/home/shoov/build/.shoov.yml')
+fs.readFileAsync('/usr/local/shoov/build/.shoov.yml')
   .then(function (data) {
     return yaml.safeLoad(data);
   })
@@ -61,7 +61,7 @@ fs.readFileAsync('/home/shoov/build/.shoov.yml')
     return variables.join('\n');
   })
   .then(function(data) {
-    return fs.writeFileAsync('/home/shoov/build/export.sh', data);
+    return fs.writeFileAsync('/usr/local/shoov/build/export.sh', data);
   })
   .catch(function(err) {
     console.log(err);
