@@ -16,9 +16,10 @@ GITHUB_ACCESS_TOKEN=$(echo $BUILD_INFO | jq '.github_access_token' | cut -d '"' 
 cd ~/build
 
 # Clone repo
+echo "Starting clone of $OWNER/$REPO"
 git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
 
-exit
+echo "Clone done"
 
 # Export variables.
 touch ~/build/export.sh
