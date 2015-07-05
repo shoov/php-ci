@@ -10,14 +10,15 @@ OWNER=$(echo $BUILD_INFO | jq '.owner' | cut -d '"' -f 2)
 REPO=$(echo $BUILD_INFO | jq '.repo' | cut -d '"' -f 2)
 BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
 PRIVATE_KEY=$(echo $BUILD_INFO | jq '.private_key' | cut -d '"' -f 2)
+GITHUB_ACCESS_TOKEN=$(echo $BUILD_INFO | jq '.github_access_token' | cut -d '"' -f 2)
 
-# Setup hub
-node ~/get_hub.js $ACCESS_TOKEN
+# Get GitHub access token
+cd ~/build
 
 # Clone repo
-cd ~/build
-git config --global hub.protocol https
-hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
+git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
+
+exit
 
 # Export variables.
 touch ~/build/export.sh
