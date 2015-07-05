@@ -36,6 +36,8 @@ fs.readFileAsync('/home/shoov/build/.shoov.yml')
   .then(function (data) {
     var variables = [];
 
+    data.env = data.env || [];
+
     data.env.forEach(function(row) {
       var keyName = Object.keys(row)[0];
       var variableValue;

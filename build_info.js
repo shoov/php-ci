@@ -56,6 +56,28 @@ var getRepository = function(repoId) {
   return rp.get(options);
 };
 
+/**
+ * Get User data.
+ *
+ * @param userId
+ *   The user ID.
+ *
+ * @returns {*}
+ */
+var getUser = function() {
+  var backendUrl = process.env.BACKEND_URL;
+  var options = {
+    url: backendUrl + '/api/me/',
+    qs: {
+      access_token: accessToken,
+      fields: 'id,label,github_access_token',
+      github_access_token: true
+    }
+  };
+
+  return rp.get(options);
+};
+
 var output = {};
 
 getBuild(arguments[0])
@@ -78,6 +100,13 @@ getBuild(arguments[0])
     output.owner = repoInfo[0];
     output.repo = repoInfo[1];
 
+    return getUser();
+
+  })
+  .then(function(response) {
+    var data = JSON.parse(response).data[0];
+    output.github_access_token = data.github_access_token;
+    // Output the result.
     process.stdout.write(JSON.stringify(output));
   })
   .catch(function(err) {
