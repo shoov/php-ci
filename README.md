@@ -4,14 +4,14 @@
 
 ## Install
 
-    $ docker pull amitaibu/php-ci
+    $ docker pull amitaibu/php-ci:0.0.1
 
 ## Usage
 
 When working locally the backend URL should be your IP, as docker doesn't know what "localhost" is.
 
     $ docker run -e "BACKEND_URL=http://10.0.0.1/" \
-      -it amitaibu/php-ci /home/shoov/main.sh <build-id> <access-token>
+      -it amitaibu/php-ci:0.0.1 /home/shoov/main.sh <build-id> <access-token>
     
 ### Silenium support    
     
