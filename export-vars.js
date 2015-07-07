@@ -5,6 +5,7 @@ var fs = Promise.promisifyAll(require("fs"));
 var crypto = require('crypto');
 var algorithm = 'aes-256-ctr';
 
+var homeDir = process.env.HOME;
 
 var args = process.argv.slice(2);
 var password = args[0];
@@ -27,12 +28,16 @@ function decrypt(text){
   return dec;
 }
 
-fs.readFileAsync('/home/shoov/build/.shoov.yml')
+fs.readFileAsync(homeDir + '/build/.shoov.yml')
   .then(function(data) {
     return yaml.safeLoad(data);
   })
   .then(function(data) {
     var variables = [];
+
+    if (!data.env) {
+      throw new Error('shoov.yml not contain environments');
+    }
 
     data.env.forEach(function(row) {
       var keyName = Object.keys(row)[0];
@@ -59,7 +64,7 @@ fs.readFileAsync('/home/shoov/build/.shoov.yml')
     return variables.join('\n');
   })
   .then(function(data) {
-    return fs.writeFileAsync('/home/shoov/build/export.sh', data);
+    return fs.writeFileAsync(homeDir + '/build/export.sh', data);
   })
   .catch(function(err) {
     console.log(err);

@@ -21,7 +21,7 @@ hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 
 # Export variables.
 node ~/export-vars.js $PRIVATE_KEY
-source ~/build/export.sh
+if [ -e ~/build/export.sh ]; then source ~/build/export.sh; fi
 
 # Parse .shoov.yml file
 node ~/parse.js
