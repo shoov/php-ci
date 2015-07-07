@@ -7,6 +7,10 @@ var R = require('ramda');
 var homeDir = process.env.HOME;
 var backendUrl = process.env.BACKEND_URL;
 
+if (!backendUrl) {
+  throw new Error('Backend url not passed.');
+}
+
 var args = process.argv.slice(2);
 var accessToken = args[0];
 
