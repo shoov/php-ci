@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 BUILD_ID=$1
 ACCESS_TOKEN=$2
@@ -20,14 +20,14 @@ git config --global hub.protocol https
 hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
 
 # Export variables.
-~/export-vars.js $PRIVATE_KEY
+node ~/export-vars.js $PRIVATE_KEY
 source ~/build/export.sh
 
-# Parse .shuv.yml file
+# Parse .shoov.yml file
 node ~/parse.js
 
 # Show commands from now on
 set -x
 
-# Execute the parsed .shuv.yml file
-sh -c ~/shoov.sh
+# Execute the parsed .shoov.yml file
+bash -c ~/shoov.sh

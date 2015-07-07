@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var Promise = require("bluebird");
 var yaml = require('js-yaml');
 var fs = Promise.promisifyAll(require("fs"));
