@@ -29,6 +29,7 @@ fs.readFileAsync(homeDir + '/build/.shoov.yml')
   })
   .catch(SyntaxError, function (e) {
     console.error("file contains invalid json");
-  }).catch(Promise.OperationalError, function (e) {
+  })
+  .catch(Promise.OperationalError, function (e) {
     console.error(e.message);
   });

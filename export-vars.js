@@ -6,32 +6,32 @@ var crypto = require('crypto');
 var algorithm = 'aes-256-ctr';
 
 
-var arguments = process.argv.slice(2);
-if (!arguments[0]) {
+var args = process.argv.slice(2);
+var password = args[0];
+
+if (!password) {
   throw new Error('Private key not passed.');
 }
 
-var password = arguments[0];
-
 function encrypt(text){
-  var cipher = crypto.createCipher(algorithm,password)
-  var crypted = cipher.update(text,'utf8','hex')
+  var cipher = crypto.createCipher(algorithm, password);
+  var crypted = cipher.update(text, 'utf8', 'hex');
   crypted += cipher.final('hex');
   return crypted;
 }
 
 function decrypt(text){
-  var decipher = crypto.createDecipher(algorithm,password)
-  var dec = decipher.update(text,'hex','utf8')
+  var decipher = crypto.createDecipher(algorithm, password);
+  var dec = decipher.update(text, 'hex', 'utf8');
   dec += decipher.final('utf8');
   return dec;
 }
 
 fs.readFileAsync('/home/shoov/build/.shoov.yml')
-  .then(function (data) {
+  .then(function(data) {
     return yaml.safeLoad(data);
   })
-  .then(function (data) {
+  .then(function(data) {
     var variables = [];
 
     data.env.forEach(function(row) {
@@ -49,7 +49,7 @@ fs.readFileAsync('/home/shoov/build/.shoov.yml')
         variableValue = decryptArr[1];
       }
       else {
-        var variableValue = row[keyName];
+        variableValue = row[keyName];
       }
 
       // Export value as a bash variable.

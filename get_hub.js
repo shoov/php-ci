@@ -4,18 +4,18 @@ var rp = require('request-promise');
 var path = require('path');
 var R = require('ramda');
 
-var arguments = process.argv.slice(2);
+var homeDir = process.env.HOME;
+var backendUrl = process.env.BACKEND_URL;
 
+var args = process.argv.slice(2);
+var accessToken = args[0];
 
-if (!arguments[0]) {
+if (!accessToken) {
   throw new Error('Access token not passed.');
 }
 
-var accessToken = arguments[0];
-
 var githubUsername;
 var githubAccessToken;
-var homeDir = process.env.HOME;
 
 /**
  * Get User data.
@@ -26,7 +26,6 @@ var homeDir = process.env.HOME;
  * @returns {*}
  */
 var getUser = function() {
-  var backendUrl = process.env.BACKEND_URL;
   var options = {
     url: backendUrl + '/api/me/',
     qs: {
