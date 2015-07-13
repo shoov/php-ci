@@ -6,11 +6,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update list of packages and install packages
 RUN apt-get update
-RUN apt-get install -y curl git graphicsmagick jq php5-cli php5-curl 
+RUN apt-get install -y curl git graphicsmagick jq php5-cli php5-curl
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup  | bash -
 RUN apt-get install -y nodejs
+
+# Install mocha
+RUN npm install -g mocha
 
 # Change working directory to install software manually
 WORKDIR /usr/local/bin
@@ -30,9 +33,6 @@ RUN echo "shoov ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 # Change working directory to home directory of shoov user
 WORKDIR /home/shoov
-
-# Add hub config template
-ADD _hub .config/hub
 
 # Enable ssh-agent
 RUN eval `ssh-agent -s`

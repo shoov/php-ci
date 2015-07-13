@@ -25,7 +25,7 @@ echo "Clone done"
 
 # Export variables.
 touch ~/build/export.sh
-~/export-vars.js $PRIVATE_KEY
+node ~/export-vars.js $PRIVATE_KEY
 source ~/build/export.sh
 
 # Parse .shoov.yml file
