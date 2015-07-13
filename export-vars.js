@@ -34,10 +34,7 @@ fs.readFileAsync(homeDir + '/build/.shoov.yml')
   })
   .then(function(data) {
     var variables = [];
-
-    if (!data.env) {
-      throw new Error('shoov.yml not contain environments');
-    }
+    data.env = data.env || [];
 
     data.env.forEach(function(row) {
       var keyName = Object.keys(row)[0];

@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Gizra <gizra.com>
+MAINTAINER Gizra <info@gizra.com>
 
 # Disable interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
@@ -52,11 +52,10 @@ RUN cd /temp-node-modules && npm install --verbose
 RUN cp -R /temp-node-modules/node_modules /home/shoov
 
 # Add scripts
-ADD build_info.js build_info.js
-ADD get_hub.js get_hub.js
-ADD main.sh main.sh
-ADD parse.js parse.js
-ADD export-vars.js export-vars.js
+ADD build_info.js /home/shoov/build_info.js
+ADD main.sh /home/shoov/main.sh
+ADD parse.js /home/shoov/parse.js
+ADD export-vars.js /home/shoov/export-vars.js
 
 # Fix permissions
 RUN chown -R shoov:shoov /home/shoov

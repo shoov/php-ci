@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 BUILD_ID=$1
 ACCESS_TOKEN=$2
@@ -10,18 +10,20 @@ OWNER=$(echo $BUILD_INFO | jq '.owner' | cut -d '"' -f 2)
 REPO=$(echo $BUILD_INFO | jq '.repo' | cut -d '"' -f 2)
 BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
 PRIVATE_KEY=$(echo $BUILD_INFO | jq '.private_key' | cut -d '"' -f 2)
+GITHUB_ACCESS_TOKEN=$(echo $BUILD_INFO | jq '.github_access_token' | cut -d '"' -f 2)
 
-# Setup hub
-node ~/get_hub.js $ACCESS_TOKEN
+# Get GitHub access token
+cd ~/build
 
 # Clone repo
-cd ~/build
-git config --global hub.protocol https
-hub clone --branch=$BRANCH --depth=1 --quiet $OWNER/$REPO .
+echo "Starting clone of $OWNER/$REPO"
+git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
+echo "Clone done"
 
 # Export variables.
-node ~/export-vars.js $PRIVATE_KEY
-if [ -e ~/build/export.sh ]; then source ~/build/export.sh; fi
+touch ~/build/export.sh
+~/export-vars.js $PRIVATE_KEY
+source ~/build/export.sh
 
 # Parse .shoov.yml file
 node ~/parse.js
@@ -30,4 +32,4 @@ node ~/parse.js
 set -x
 
 # Execute the parsed .shoov.yml file
-bash -c ~/shoov.sh
+sh -c ~/shoov.sh
