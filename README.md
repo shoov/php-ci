@@ -5,7 +5,7 @@
 ## Install
 
 ```shell
-docker pull shoov/php-ci:0.0.2
+docker pull shoov/php-ci:v0.0.2
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ docker run -e BACKEND_URL=http://10.0.0.1 -it shoov/php-ci /home/shoov/main.sh <
 ```
 =======
     $ docker run -e "BACKEND_URL=http://10.0.0.1/" \
-      -it shoov/php-ci:0.0.2 /home/shoov/main.sh <build-id> <access-token>
+      -it shoov/php-ci:v0.0.2 /home/shoov/main.sh <build-id> <access-token>
 
 ### Selenium support
 
@@ -38,7 +38,7 @@ Then run php-ci linked to the selenium server.
 ```shell
 docker run --link selenium:selenium \
   -e "BACKEND_URL=http://10.0.0.1/" \
-  shoov/php-ci:0.0.2 /home/shoov/main.sh <build-id> <access-token>
+  shoov/php-ci:v0.0.2 /home/shoov/main.sh <build-id> <access-token>
 ```  
 
 Direct your tests to run against `http://selenium:4444/wd/hub`
