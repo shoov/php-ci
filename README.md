@@ -50,5 +50,5 @@ Direct your tests to run against `http://selenium:4444/wd/hub`
 If you need adapt the project to your needs, clone, modify the `Dockerfile` and from the source directory, run:
 
 ```shell
-docker build -t shoov/php-ci .
+docker build -t shoov/php-ci:v0.0.2 .
 ```
