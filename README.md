@@ -12,13 +12,10 @@ docker pull shoov/php-ci:v0.0.2
 
 When working locally the backend URL should be your IP, as docker doesn't know what "localhost" is.
 
-<<<<<<< HEAD
 ```shell
-docker run -e BACKEND_URL=http://10.0.0.1 -it shoov/php-ci /home/shoov/main.sh <build-id> <access-token>
+docker run -e "BACKEND_URL=http://10.0.0.1/" \
+  -it shoov/php-ci:v0.0.2 /home/shoov/main.sh <build-id> <access-token>
 ```
-=======
-    $ docker run -e "BACKEND_URL=http://10.0.0.1/" \
-      -it shoov/php-ci:v0.0.2 /home/shoov/main.sh <build-id> <access-token>
 
 ### Selenium support
 
