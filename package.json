@@ -1,12 +1,4 @@
 {
-  "name": "shoov-php-ci",
-  "version": "0.0.2",
-  "description": "Script inside a docker container that parse .shoov.yml and do all work.",
-  "private": true,
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/shoov/php-ci"
-  },
   "dependencies": {
     "bluebird": "^2.9.14",
     "js-yaml": "^3.2.7",
