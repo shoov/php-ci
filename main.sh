@@ -12,6 +12,9 @@ BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
 PRIVATE_KEY=$(echo $BUILD_INFO | jq '.private_key' | cut -d '"' -f 2)
 GITHUB_ACCESS_TOKEN=$(echo $BUILD_INFO | jq '.github_access_token' | cut -d '"' -f 2)
 
+# Get .shoov.json
+curl -o ~/.shoov.json https://live-shoov.pantheon.io/api/v1.0/config?access_token=$ACCESS_TOKEN
+
 # Get GitHub access token
 cd ~/build
 
