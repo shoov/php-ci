@@ -1,17 +1,23 @@
 var Promise = require('bluebird');
 var rp = require('request-promise');
 
-var arguments = process.argv.slice(2);
+var backendUrl = process.env.BACKEND_URL;
 
+if (!backendUrl) {
+  throw new Error('Backend url not passed.');
+}
 
-if (!arguments[0]) {
+var args = process.argv.slice(2);
+var buildId = args[0];
+var accessToken = args[1];
+
+if (!buildId) {
   throw new Error('Build ID not passed.');
 }
-else if (!arguments[1]) {
+
+if (!accessToken) {
   throw new Error('Access token not passed.');
 }
-
-var accessToken = arguments[1];
 
 /**
  * Get Build data.
@@ -22,7 +28,6 @@ var accessToken = arguments[1];
  * @returns {*}
  */
 var getBuild = function(buildId) {
-  var backendUrl = process.env.BACKEND_URL;
   var options = {
     url: backendUrl + '/api/ci-builds/' + buildId,
     qs: {
@@ -43,7 +48,6 @@ var getBuild = function(buildId) {
  * @returns {*}
  */
 var getRepository = function(repoId) {
-  var backendUrl = process.env.BACKEND_URL;
   var options = {
     url: backendUrl + '/api/repositories/' + repoId,
     qs: {
@@ -80,7 +84,7 @@ var getUser = function() {
 
 var output = {};
 
-getBuild(arguments[0])
+getBuild(buildId)
   .then(function(response) {
     // Build data.
     var data = JSON.parse(response).data[0];

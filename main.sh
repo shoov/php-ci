@@ -18,7 +18,6 @@ cd ~/build
 # Clone repo
 echo "Starting clone of $OWNER/$REPO"
 git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
-
 echo "Clone done"
 
 # Export variables.
