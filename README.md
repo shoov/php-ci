@@ -19,12 +19,14 @@ docker run -e "BACKEND_URL=http://10.0.0.1/" \
 
 ### Selenium support
 
-To work with selenium support first run the selenium server.
+To work locally with selenium support first run the selenium server.
 
 ```shell
-docker run --name=selenium \
+docker run --rm --name=selenium \
+  -p=0.0.0.0:8484:8484 -p=0.0.0.0:2222:2222 \
+  -p=0.0.0.0:4470:4444 -p=0.0.0.0:5920:5900 \
   -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 \
-  -e VNC_PASSWORD=hola -e WITH_GUACAMOLE=false \
+  -e VNC_PASSWORD=hola -e WITH_GUACAMOLE=true \
   elgalu/selenium:v2.46.0-base1
 ```
 
