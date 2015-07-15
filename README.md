@@ -25,7 +25,7 @@ To work with selenium support first run the selenium server.
 docker run --name=selenium \
   -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 \
   -e VNC_PASSWORD=hola -e WITH_GUACAMOLE=false \
-  elgalu/selenium:v2.45.0-oracle1
+  elgalu/selenium:v2.46.0-base1
 ```
 
 For other configuration options check [full documentation to selenium container](https://registry.hub.docker.com/u/elgalu/docker-selenium/)
