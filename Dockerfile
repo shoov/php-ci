@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update list of packages and install packages
 RUN apt-get update
-RUN apt-get install -y curl git graphicsmagick jq php5-cli php5-curl
+RUN apt-get install -y curl gawk git graphicsmagick jq php5-cli php5-curl
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup  | bash -

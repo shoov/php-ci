@@ -35,5 +35,5 @@ node ~/parse.js
 set -x
 
 # Execute the parsed .shoov.yml file
-sh -c ~/shoov.sh > ~/output.html
+sh -c ~/shoov.sh | ~/ansi2html.sh > ~/output.html
 cat ~/output.html
