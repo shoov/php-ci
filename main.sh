@@ -12,28 +12,28 @@ BRANCH=$(echo $BUILD_INFO | jq '.branch' | cut -d '"' -f 2)
 PRIVATE_KEY=$(echo $BUILD_INFO | jq '.private_key' | cut -d '"' -f 2)
 GITHUB_ACCESS_TOKEN=$(echo $BUILD_INFO | jq '.github_access_token' | cut -d '"' -f 2)
 
-# Get .shoov.json
-curl -o ~/.shoov.json $BACKEND_URL/api/v1.0/config?access_token=$ACCESS_TOKEN
+{
+  # Get .shoov.json
+  curl -s -o ~/.shoov.json $BACKEND_URL/api/v1.0/config?access_token=$ACCESS_TOKEN
 
-# Get GitHub access token
-cd ~/build
+  # Get GitHub access token
+  cd ~/build
 
-# Clone repo
-echo "Starting clone of $OWNER/$REPO"
-git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
-echo "Clone done"
+  # Clone repo
+  git clone --branch=$BRANCH --depth=1 --quiet https://$GITHUB_ACCESS_TOKEN@github.com/$OWNER/$REPO.git .
 
-# Export variables.
-touch ~/build/export.sh
-node ~/export-vars.js $PRIVATE_KEY
-source ~/build/export.sh
+  # Export variables.
+  touch ~/build/export.sh
+  node ~/export-vars.js $PRIVATE_KEY
+  source ~/build/export.sh
 
-# Parse .shoov.yml file
-node ~/parse.js
+  # Parse .shoov.yml file
+  node ~/parse.js
 
-# Show commands from now on
-set -x
+  # Execute the parsed .shoov.yml file
 
-# Execute the parsed .shoov.yml file
-sh -c ~/shoov.sh | ~/ansi2html.sh > ~/output.html
-cat ~/output.html
+# Hide output.
+} &> /dev/null
+
+# Pipe content to html
+sh -c ~/shoov.sh | ~/ansi2html.sh
