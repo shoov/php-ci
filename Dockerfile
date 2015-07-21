@@ -52,10 +52,11 @@ RUN cd /temp-node-modules && npm install --verbose
 RUN cp -R /temp-node-modules/node_modules /home/shoov
 
 # Add scripts
+ADD ansi2html.sh /home/shoov/ansi2html.sh
 ADD build_info.js /home/shoov/build_info.js
+ADD export-vars.js /home/shoov/export-vars.js
 ADD main.sh /home/shoov/main.sh
 ADD parse.js /home/shoov/parse.js
-ADD export-vars.js /home/shoov/export-vars.js
 
 # Fix permissions
 RUN chown -R shoov:shoov /home/shoov
